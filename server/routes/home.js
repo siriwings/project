@@ -46,7 +46,6 @@ router.get('/:listType/:id', (req, res) => {
     if (listType === 'new') {
         // GET NEWER MEMO
         Article.find({$and:[{publish:true},{_id: {$gt: objId}}]})
-       // Article.find({_id: {$gt: objId}})
             .sort({_id: -1})
             .limit(6)
             .exec((err, articles) => {
@@ -56,7 +55,6 @@ router.get('/:listType/:id', (req, res) => {
     } else {
         // GET OLDER MEMO
         Article.find({$and:[{publish:true},{_id: {$lt: objId}}]})
-        //Article.find({_id: {$lt: objId}})
             .sort({_id: -1})
             .limit(6)
             .exec((err, articles) => {
